@@ -1,8 +1,11 @@
 <div>welcome works {{name}}</div>
 
 <div><a routerLink="/todos">You can edit your todos</a> 
-    <button (click)="welcomebean()" class="btn btn-success">Get Welcome</button>
+    <button (click)="welcomebeanwithpath()" class="btn btn-success">Get Welcome</button>
 </div>
 <div *ngIf="ResponseMessage">
     <h4 >{{ResponseMessage}}</h4>
+</div>
+<div *ngIf="ErrorMessage">
+    <h4>{{ErrorMessage}}</h4>
 </div>

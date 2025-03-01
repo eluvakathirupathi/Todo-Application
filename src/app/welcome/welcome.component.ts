@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule,NgIf } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { WelcomedataService } from '../service/data/welcomedata.service';
+import { errorContext } from 'rxjs/internal/util/errorContext';
 
 @Component({
   selector: 'app-welcome',
@@ -14,6 +15,7 @@ import { WelcomedataService } from '../service/data/welcomedata.service';
 export class WelcomeComponent implements OnInit{
   name='';
   ResponseMessage = ''
+  ErrorMessage = ''
   constructor(
     private route: ActivatedRoute,
     private welcomeservice: WelcomedataService)
@@ -27,9 +29,10 @@ export class WelcomeComponent implements OnInit{
   }
   welcomebean(){
     // console.log("from welcome");
-    console.log(this.welcomeservice.executeWelcomeBean());
+    // console.log(this.welcomeservice.executeWelcomeBean());
     this.welcomeservice.executeWelcomeBean().subscribe(
-      response => this.handlesuccessfulresponse(response)
+      response => this.handlesuccessfulresponse(response),
+      error => this.handleerrorresponse(error)
     );
 
     // console.log("Calling Welcome Bean API...");
@@ -44,9 +47,19 @@ export class WelcomeComponent implements OnInit{
     // });
   }
   handlesuccessfulresponse(response: any){
-    // console.log(response);
-    // console.log(response.message);
+    console.log(response);
+    console.log(response.message);
     this.ResponseMessage=response.message;
   }
+  handleerrorresponse(error: any ){
+    console.log(error)
+    this.ErrorMessage=error.error.message;
+  }
 
+  welcomebeanwithpath(){
+    this.welcomeservice.executeWelcomeBeanwithPath(this.name).subscribe(
+      response => this.handlesuccessfulresponse(response),
+      error => this.handleerrorresponse(error)
+    );
+  }
 }

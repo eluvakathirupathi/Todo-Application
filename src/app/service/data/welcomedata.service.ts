@@ -18,6 +18,10 @@ export class WelcomedataService {
   executeWelcomeBean(){
     // console.log("from service");
     return this.http.get<HelloWorldBean>('http://localhost:8080/hello-world-bean');
+
+  }
+  executeWelcomeBeanwithPath(name: string){
+    return this.http.get<HelloWorldBean>(`http://localhost:8080/hello/${name}`);
   }
 
 }
