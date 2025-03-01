@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { TododataService } from '../service/data/tododata.service';
 
 
-export class Todo{
+export class Todo {
   constructor(
     public id: number,
     public desc: string,
     public done: boolean,
     public target: Date
-  ){
+  ) {
 
   }
 }
@@ -22,7 +22,7 @@ export class Todo{
 export class ListTodosComponent implements OnInit {
 
   todos: Todo[] = [];
-
+  delete_message: string = "";
   // =[
   //   new Todo(1,"eat",false,new Date()),
   //   new Todo(2,"sleep",false,new Date()),
@@ -34,15 +34,29 @@ export class ListTodosComponent implements OnInit {
 
   constructor(
     private todoservice: TododataService
-  ){}
+  ) { }
 
-  ngOnInit(){
+  ngOnInit() {
+    this.refreshTodo()
+  }
+
+  refreshTodo() {
     this.todoservice.retrieveAllTodo('thiru').subscribe(
       response => {
-        console.log(response[0].desc);
+        // console.log(response[0].desc);
         this.todos = response;
       }
     )
   }
-  
+
+  deleteTodoById(id: number) {
+    this.todoservice.deleteTodo("thiru", id).subscribe(
+      (response: any) => {
+        // console.log(response);
+        this.delete_message=`Deleted todo ${id}`
+        this.refreshTodo();
+      }
+    )
+  }
+
 }
