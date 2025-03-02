@@ -7,6 +7,7 @@
             <th>Description</th>
             <th>Target Date</th>
             <th>Is Completed</th>
+            <th>Update</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -14,7 +15,11 @@
         <td>{{todo.desc}}</td>
         <td>{{todo.target | date}} </td>
         <td>{{todo.done}}</td>
+        <td><button (click)="updateTodoById(todo.id)" class="btn btn-success">Update</button></td>
         <td><button (click)="deleteTodoById(todo.id)" class="btn btn-warning">Delete</button></td>
     </tr>
 </Table>
+<div class="container">
+    <button (click)="addTodo()" class="btn btn-success">Create New Todo</button>
+</div>
 </div>
