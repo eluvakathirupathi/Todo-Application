@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 import { HardcodedAuthenticationService } from '../service/hardcoded-authentication.service';
+import { BasicAuthenticationService } from '../service/basic-authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,10 @@ export class LoginComponent {
   invalidLogin=false;
   message='Hey user';
 
-  constructor(private router: Router, private auth: HardcodedAuthenticationService){
+  constructor(private router: Router, 
+    private auth: HardcodedAuthenticationService,
+    private basicAuth: BasicAuthenticationService
+  ){
 
   }
 
@@ -36,6 +40,25 @@ export class LoginComponent {
       this.invalidLogin=true;
       this.message = "Invalid credentials: ";
     }
+  }
+
+  Basiclogin(){
+    // console.log(this.uname)
+    // console.log(this.pass)
+    // if(this.uname==="thiru" && this.pass==="pass")
+      this.basicAuth.executeAuthenticationService(this.uname,this.pass)
+        .subscribe(
+          data=>{
+            console.log(data)
+            this.router.navigate(['welcome', this.uname])
+            this.invalidLogin=false
+          },
+          error=>{
+            console.log(error)
+            this.invalidLogin=true
+          }
+      )
+      
   }
 
 }
