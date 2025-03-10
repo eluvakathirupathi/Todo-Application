@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Todo } from '../../list-todos/list-todos.component';
 import { Router } from '@angular/router';
-import { API_URL } from '../../app.constant';
+import { API_URL, JPA_API_URL } from '../../app.constant';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class TododataService {
   ) { }
 
   retrieveAllTodo(username:string){
-    return this.http.get<Todo []>(`${API_URL}/user/${username}/todos`)
+    return this.http.get<Todo []>(`${JPA_API_URL}/user/${username}/todos`)
   }
 
   deleteTodo(username:string,id:number){

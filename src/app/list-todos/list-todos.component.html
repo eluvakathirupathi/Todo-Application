@@ -12,7 +12,7 @@
         </tr>
     </thead>
     <tr *ngFor="let todo of todos">
-        <td>{{todo.desc}}</td>
+        <td>{{todo.description}}</td>
         <td>{{todo.target | date}} </td>
         <td>{{todo.done}}</td>
         <td><button (click)="updateTodoById(todo.id)" class="btn btn-success">Update</button></td>

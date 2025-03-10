@@ -60,5 +60,22 @@ export class LoginComponent {
       )
       
   }
+  JWTlogin(){
+
+      this.basicAuth.executeJWTAuthenticationService(this.uname,this.pass)
+        .subscribe(
+          data=>{
+            console.log(data)
+            this.router.navigate(['welcome', this.uname])
+            this.invalidLogin=false
+          },
+          error=>{
+            console.log(error)
+            this.invalidLogin=true
+          }
+      )
+      
+  }
+
 
 }
