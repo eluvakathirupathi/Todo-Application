@@ -21,21 +21,23 @@ export class WelcomedataService {
 
   }
   executeWelcomeBeanwithPath(name: string){
-    let basicAuthHead = this.createBasicAuthHttpHeader();
+    // let basicAuthHead = this.createBasicAuthHttpHeader();
 
-    let headers = new HttpHeaders({
-      Authorization: basicAuthHead
-    })
+    // let headers = new HttpHeaders({
+    //   Authorization: basicAuthHead
+    // })
 
-    return this.http.get<HelloWorldBean>(`http://localhost:8080/hello/${name}`,{headers});
+    return this.http.get<HelloWorldBean>(`http://localhost:8080/hello/${name}`,
+    // {headers}
+    );
   }
 
-  createBasicAuthHttpHeader(){
-    let username ='thiru'
-    let password = 'pass'
+  // createBasicAuthHttpHeader(){
+  //   let username ='thiru'
+  //   let password = 'pass'
 
-    let basicAuthHead = 'Basic '+window.btoa(`${username}:${password}`)
-    return basicAuthHead
-  }
+  //   let basicAuthHead = 'Basic '+window.btoa(`${username}:${password}`)
+  //   return basicAuthHead
+  // }
 
 }
