@@ -4,7 +4,7 @@
     <form (ngSubmit)= "!todoForm.invalid && updateTodoById()" #todoForm="ngForm">
     <fieldset class="form-group">
         <label>Description</label>
-        <input class="form-control" type="text" [(ngModel)]="todo.desc" name="desc"  required>
+        <input class="form-control" type="text" [(ngModel)]="todo.description" name="desc"  required>
     </fieldset>
     <fieldset>
         <label>Target-Date</label>

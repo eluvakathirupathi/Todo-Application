@@ -19,16 +19,17 @@ export class TododataService {
   }
 
   deleteTodo(username:string,id:number){
-    return this.http.delete(`${API_URL}/user/${username}/todos/${id}`)
+    return this.http.delete(`${JPA_API_URL}/user/${username}/todos/${id}`)
   }
   findTodo(username:string,id:number){
-    return this.http.get<Todo>(`${API_URL}/user/${username}/todos/${id}`)
+    return this.http.get<Todo>(`${JPA_API_URL}/user/${username}/todos/${id}`)
   }
   updateTodo(username:string,id:number,todo:Todo){
-    return this.http.put<Todo>(`${API_URL}/user/${username}/todos/${id}`,todo)
+    return this.http.put<Todo>(`${JPA_API_URL}/user/${username}/todos/${id}`,todo)
   }
   createTodo(username:string,todo:Todo){
-    return this.http.post<Todo>(`${API_URL}/user/${username}/todos`,todo)
+    
+    return this.http.post<Todo>(`${JPA_API_URL}/user/${username}/todos`,todo)
   }
   
 }
